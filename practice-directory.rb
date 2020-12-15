@@ -1,6 +1,6 @@
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
+  puts "Please enter the names of the students".center(65)
+  puts "To finish, just hit return twice".center(65)
   #create an empty array
   students = []
   #get the first name
@@ -8,7 +8,7 @@ def input_students
   #while the name is not empty, repeat this code
   while !name.empty? do
     students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
+    puts "Now we have #{students.count} students".center(65)
 
     #get another name from user
     name = gets.chomp
@@ -21,8 +21,8 @@ end
 # add hobby to students array
 def input_hobby(students)
 # ask user to input their fav hobbu
-  puts "What is your favourite hobby?"
-  puts "To finish, just hit return twice"
+  puts "What is your favourite hobby?".center(65)
+  puts "To finish, just hit return twice".center(65)
 
   hobby = gets.chomp
   #while hobby is full do the second while loop
@@ -32,7 +32,7 @@ def input_hobby(students)
     while counter < students.count do
     #assign new key 'hobby' to user input of fav hobby in students array
     students[counter][:hobby] = hobby
-    puts "#{students[counter][:name]}'s favourite hobby is #{students[counter][:hobby]}"
+    puts "#{students[counter][:name]}'s favourite hobby is #{students[counter][:hobby]}".center(65)
 
     counter += 1
 
@@ -44,21 +44,21 @@ end
 
 # print header
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(65)
+  puts "-------------".center(65)
 end
 
 # iterates over array and prints the name in each element with number
 def print(students)
   counter = 0
   while counter < students.count do
-    puts "#{counter + 1}. #{students[counter][:name]} (#{students[counter][:cohort]} cohort), (Favourite hobby: #{students[counter][:hobby]})"
+    puts "#{counter + 1}. #{students[counter][:name]} (#{students[counter][:cohort]} cohort), (Favourite hobby: #{students[counter][:hobby]})".center(65)
     counter += 1
   end
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students."
+  puts "Overall, we have #{students.count} great students.".center(65)
 end
 
 #must call the methods otherwise nothing happens
