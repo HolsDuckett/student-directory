@@ -11,6 +11,7 @@ def input_students
     return students if name.empty?
     student_list[:name] = name
     student_list[:cohort] = get_cohort
+    student_list[:hobby] = input_hobby
     students << student_list
     puts "Now we have #{students.count} students".center(65)
     end
@@ -36,27 +37,17 @@ def get_cohort
 end
 
 # add hobby to students array
-def input_hobby(students)
+def input_hobby
 # ask user to input their fav hobbu
   puts "What is your favourite hobby?".center(65)
-  puts "To finish, just hit return twice".center(65)
-
-  hobby = gets.chomp
-  #while hobby is full do the second while loop
-  while !hobby.empty? do
-    counter = 0
-    #counter less that amount of students ask for hobby
-    while counter < students.count do
-    #assign new key 'hobby' to user input of fav hobby in students array
-    students[counter][:hobby] = hobby
-    puts "#{students[counter][:name]}'s favourite hobby is #{students[counter][:hobby]}".center(65)
-
-    counter += 1
-
-    hobby = gets.chomp
-    end
+  hobby = gets.chomp.to_sym.capitalize
+  if !hobby.empty?
+    hobby
+  elsif hobby.empty?
+    "Please enter a hobby".center(65)
+    hobby = gets.chomp.to_sym.capitalize
   end
-  students
+hobby
 end
 
 # print header
