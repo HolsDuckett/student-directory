@@ -1,21 +1,38 @@
 def input_students
-  puts "Please enter the names of the students".center(65)
-  puts "To finish, just hit return twice".center(65)
-  #create an empty array
-  students = []
-  #get the first name
-  name = gets.chomp
-  #while the name is not empty, repeat this code
-  while !name.empty? do
-    students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students".center(65)
 
-    #get another name from user
+  students = []
+
+  #while the name is not empty, repeat this code
+  while true do
+    student_list = Hash.new
+    puts "Please enter the name of the student".center(65)
+    puts "To finish, just hit return twice".center(65)
     name = gets.chomp
+    return students if name.empty?
+    student_list[:name] = name
+    student_list[:cohort] = get_cohort
+    students << student_list
+    puts "Now we have #{students.count} students".center(65)
+    end
   end
   #return the array of students
-  students
-  input_hobby(students)
+
+def get_cohort
+  months = [:January, :February, :March, :April, :May, :June, :July, :August,
+    :September, :October, :November, :December]
+
+  puts "Please enter the cohort you will be joining".center(65)
+  cohort = gets.chomp.to_sym.capitalize
+
+    if !cohort.empty? && months.include?(cohort)
+      return cohort
+    elsif !cohort.empty? && !months.include?(cohort)
+      puts "Please enter a valid cohort".center(65)
+      cohort = gets.chomp.to_sym.capitalize
+    elsif cohort.empty?
+      cohort = :November
+    end
+  cohort
 end
 
 # add hobby to students array
@@ -50,10 +67,10 @@ end
 
 # iterates over array and prints the name in each element with number
 def print(students)
-  counter = 0
-  while counter < students.count do
-    puts "#{counter + 1}. #{students[counter][:name]} (#{students[counter][:cohort]} cohort), (Favourite hobby: #{students[counter][:hobby]})".center(65)
-    counter += 1
+  students.each do |student|
+    student.each do |catergory, value|
+      puts "#{catergory.to_s.capitalize}: #{value}".center(65)
+    end
   end
 end
 
